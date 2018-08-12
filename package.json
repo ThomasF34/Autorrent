@@ -1,0 +1,20 @@
+{
+  "name": "Autorrent",
+  "version": "1.0.0",
+  "description": "Telegram bot to search and download torrent on a personnal Raspberry or NAS",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "jsdoc": "^3.5.5",
+    "pg": "^7.4.3",
+    "telegram-node-bot": "^4.0.5",
+    "torrent-search-api": "^1.1.5",
+    "xml2js": "^0.4.19"
+  }
+}
