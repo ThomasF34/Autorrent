@@ -1,11 +1,19 @@
-const Telegram = require('telegram-node-bot');
-const TorrentSearchApi = require('torrent-search-api');
+const Telegram = require('telegram-node-bot'),
+TorrentSearchApi = require('torrent-search-api'),
+DAO = require('./db'),
+request = require('request'),
+fs = require('fs');
 
 require('dotenv').load();
 
 class TorrentController extends Telegram.TelegramBaseController {
 
 	torrentSearchHandler($){
+		let ip = "";
+
+		DAO.getUserInfo($.message.from.id).then(rows => {
+			ip = rows[0].ip;
+		});
 
 		let recherche = $.message.text.split(' ').slice(1).join(' ');
 
@@ -35,8 +43,18 @@ class TorrentController extends Telegram.TelegramBaseController {
 		          resp += strToAdd;
 							preparingMenu[index] = () => {
 								torrentSearch.downloadTorrent(torrents[index], './torrent/'+recherche+'.torrent').then(
-							    $.sendMessage("J'ai DL le fichier torrent, reste à voir ce qu'on en fait maintenant ...."))
-                            }//console.log(torrents[index].link); $.sendDocument({url : torrents[index].link, filename:'test.torrent'}).then()}; //IL FAUT METTRE ICI LA FONCTION DE DL
+									request.post({url:'http://'+ip+':49152/upload', formData: {file: fs.createReadStream('./torrent/'+recherche+'.torrent')}}, function optionalCallback(err, httpResponse, body){
+									  if (err) {
+									    console.error('upload failed:', err);
+									  }
+									  console.log('Upload successful!  Server responded with:', body);
+										$.sendMessage("Mdr j'ai DL");
+									}));
+
+							    	//$.sendMessage("J'ai DL le fichier torrent, reste à voir ce qu'on en fait maintenant ...."))
+                            }
+														//console.log(torrents[index].link);
+														//$.sendDocument({url : torrents[index].link, filename:'test.torrent'}).then()}; //IL FAUT METTRE ICI LA FONCTION DE DL
 		        });
 						$.sendMessage(resp,{parse_mode: "Markdown"});
 						$.runMenu(preparingMenu);

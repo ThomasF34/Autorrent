@@ -13,6 +13,8 @@
     "dotenv": "^6.0.0",
     "jsdoc": "^3.5.5",
     "pg": "^7.4.3",
+    "request": "^2.88.0",
+    "scp": "0.0.3",
     "telegram-node-bot": "^4.0.5",
     "torrent-search-api": "^1.1.5",
     "xml2js": "^0.4.19"
