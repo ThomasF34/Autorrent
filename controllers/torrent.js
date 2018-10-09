@@ -33,7 +33,8 @@ class TorrentController extends Telegram.TelegramBaseController {
 							let strToAdd = "*"+index.toString() + "*: " + torrent.title + "---" + torrent.size + "---" + torrent.seeds+ "\n\n";
 							strToAdd = strToAdd.replace("'", "");
 		          resp += strToAdd;
-							preparingMenu[index] = () => {torrentSearch.downloadTorrent(torrents[index], './torrent/'+recherche+'.torrent').then(
+							preparingMenu[index] = () => {
+								torrentSearch.downloadTorrent(torrents[index], './torrent/'+recherche+'.torrent').then(
 							    $.sendMessage("J'ai DL le fichier torrent, reste à voir ce qu'on en fait maintenant ...."))
                             }//console.log(torrents[index].link); $.sendDocument({url : torrents[index].link, filename:'test.torrent'}).then()}; //IL FAUT METTRE ICI LA FONCTION DE DL
 		        });

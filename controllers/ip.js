@@ -10,7 +10,7 @@ class IpController extends Telegram.TelegramBaseController {
         DAO.getUserInfo(id).then(rows => {
             let ip = rows[0].ip;
             if(!!ip){
-                $.sendMessage("Voici l'adresse que j'ai en mémoire : *"+ ip+ "*", {parseMode: 'Markdown'});
+                $.sendMessage("Voici l'adresse que j'ai en mémoire : *"+ ip+ "*", {parse_mode: "Markdown"});
             }
 
             if(newIP === ""){
