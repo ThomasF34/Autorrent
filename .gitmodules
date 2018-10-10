@@ -1,0 +1,3 @@
+[submodule "torrentAPI"]
+	path = torrentAPI
+	url = https://github.com/yannick-mayeur/torrentAPI.git
