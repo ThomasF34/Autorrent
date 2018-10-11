@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: thomasf
+      POSTGRES_DB: autorrent
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ~/db/autorrent:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "5000:8080"
+    depends_on:
+      - db
+
+  web:
+    build: .
+    command: node bot.js
+    volumes:
+      - .:/usr/src/myapp
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
