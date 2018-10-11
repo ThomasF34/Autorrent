@@ -46,9 +46,10 @@ class TorrentController extends Telegram.TelegramBaseController {
 									request.post({url:'http://'+ip+':49152/upload', formData: {file: fs.createReadStream('./torrent/'+recherche+'.torrent')}}, function optionalCallback(err, httpResponse, body){
 									  if (err) {
 									    console.error('upload failed:', err);
+									  } else {
+									     console.log('Upload successful!  Server responded with:', body);
 									  }
-									  console.log('Upload successful!  Server responded with:', body);
-										$.sendMessage("Mdr j'ai DL");
+								          $.sendMessage("Mdr j'ai DL");
 									}));
 
 							    	//$.sendMessage("J'ai DL le fichier torrent, reste à voir ce qu'on en fait maintenant ...."))

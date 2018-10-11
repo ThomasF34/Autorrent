@@ -22,7 +22,7 @@ services:
     build: .
     command: node bot.js
     volumes:
-      - .:/usr/src/myapp
+      - .:/usr/src/app
     ports:
       - "8080:8080"
     depends_on:
