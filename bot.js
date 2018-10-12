@@ -12,7 +12,9 @@ tg.router
     .when(new Telegram.TextCommand('/torrent','torrentCommand'), new TorrentController())
     .when(new Telegram.TextCommand("/start", 'startCommand'), new StartController())
     .when(new Telegram.TextCommand("/ip", 'ipCommand'), new IpController())
+    .when(new Telegram.TextCommand("/info", 'infoCommand'), new IpController())
     .when(new Telegram.TextCommand("/status", 'statusCommand'), new StatusController())
+    .when(new Telegram.TextCommand('/help', 'helpCommand'), new OtherwiseController())
     .otherwise(new OtherwiseController());
 
 
